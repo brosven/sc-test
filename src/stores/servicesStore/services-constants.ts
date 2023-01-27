@@ -1,3 +1,3 @@
 export enum ServicesConstants {
-  ChangeDescription = 'CHANGE_SERVICE_DESCRIPTION',
+  ChangeServiceMainInfo = 'CHANGE_SERVICE_MAIN_INFO',
 }

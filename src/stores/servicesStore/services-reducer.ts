@@ -46,9 +46,9 @@ const initialValue: ServiceType[] = [
 
 const servicesReducer = (state: ServiceType[] = initialValue, action: AnyAction) => {
   switch (action.type) {
-    case ServicesConstants.ChangeDescription: {
+    case ServicesConstants.ChangeServiceMainInfo: {
       return state.map((service) =>
-        service.id === action.payload.id ? { ...service, description: action.payload.description } : service,
+        service.id === action.payload.id ? { ...service, mainInfo: action.payload.mainInfo } : service,
       );
     }
     default: {

@@ -3,6 +3,7 @@ import { ServiceType } from '../../stores/servicesStore/services-types';
 import { useAppSelector } from '../../stores/root-store-hooks';
 import { selectServices } from '../../stores/root-store-selectors';
 import { TabsDesk, TabsType } from '../../components/TabsDesk/TabsDesk';
+import { ServiceDescription } from '../../components/ServiceDescription/ServiceDescription';
 
 export const Service = () => {
   const { serviceId } = useParams();
@@ -12,14 +13,7 @@ export const Service = () => {
   const serviceTabs: TabsType[] = [
     {
       header: 'Основная информация',
-      body: (
-        <>
-          <h3>{currentService?.mainInfo.name}</h3>
-          <p>{currentService?.mainInfo.type}</p>
-          <p>{currentService?.mainInfo.lastUpdate.toDateString()}</p>
-          <p>{currentService?.mainInfo.description}</p>
-        </>
-      ),
+      body: currentService ? <ServiceDescription service={currentService} /> : <p>Нет информации о сервисе</p>,
     },
     {
       header: 'Владелец',

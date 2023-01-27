@@ -1,9 +1,10 @@
 import { ServicesConstants } from './services-constants';
+import { ServiceMainInfoType } from './services-types';
 
-export const changeServiceDescription = (id: string, description: string) => ({
-  type: ServicesConstants.ChangeDescription,
+export const changeServiceDescription = (id: string, mainInfo: ServiceMainInfoType) => ({
+  type: ServicesConstants.ChangeServiceMainInfo,
   payload: {
     id,
-    description,
+    mainInfo,
   },
 });
