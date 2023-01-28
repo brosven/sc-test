@@ -5,10 +5,10 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import TreeItem from '@mui/lab/TreeItem';
 
-import { useAppSelector } from '../../stores/root-store-hooks';
-import { TaskType } from '../../stores/tasksStore/tasks-types';
-import { ServiceType } from '../../stores/servicesStore/services-types';
-import { selectServices, selectTasks } from '../../stores/root-store-selectors';
+import { useAppSelector } from '../../stores/root-store/root-store-hooks';
+import { TaskType } from '../../stores/tasks-store/tasks-types';
+import { ServiceType } from '../../stores/services-store/services-types';
+import { selectServices, selectTasks } from '../../stores/root-store/root-store-selectors';
 import './Tree.css';
 
 export const Tree = () => {

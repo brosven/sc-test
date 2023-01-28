@@ -9,7 +9,7 @@ const initialValue: TaskType[] = [
     customer: 'Сервис - 1',
     description: 'Описание задачи - 1',
     comment: 'Комментарий к задаче - 1',
-    status: 'new',
+    status: 'новая',
   },
   {
     id: 'service-2-1',
@@ -17,7 +17,7 @@ const initialValue: TaskType[] = [
     customer: 'Сервис - 2',
     description: 'Описание задачи - 1',
     comment: 'Комментарий к задаче - 1',
-    status: 'new',
+    status: 'завершенная',
   },
   {
     id: 'service-3-1',
@@ -25,7 +25,7 @@ const initialValue: TaskType[] = [
     customer: 'Сервис - 3',
     description: 'Описание задачи - 1',
     comment: 'Комментарий к задаче - 1',
-    status: 'new',
+    status: 'новая',
   },
   {
     id: 'service-1-2',
@@ -33,7 +33,7 @@ const initialValue: TaskType[] = [
     customer: 'Сервис - 1',
     description: 'Описание задачи - 2',
     comment: 'Комментарий к задаче - 2',
-    status: 'closed',
+    status: 'завершенная',
   },
   {
     id: 'service-2-2',
@@ -41,7 +41,7 @@ const initialValue: TaskType[] = [
     customer: 'Сервис - 2',
     description: 'Описание задачи - 2',
     comment: 'Комментарий к задаче - 2',
-    status: 'closed',
+    status: 'новая',
   },
   {
     id: 'service-3-2',
@@ -49,19 +49,14 @@ const initialValue: TaskType[] = [
     customer: 'Сервис - 3',
     description: 'Описание задачи - 2',
     comment: 'Комментарий к задаче - 2',
-    status: 'closed',
+    status: 'новая',
   },
 ];
 
 const tasksReducer = (state: TaskType[] = initialValue, action: AnyAction) => {
   switch (action.type) {
-    case TasksConstants.ChangeDescription: {
-      return state.map((task) =>
-        task.id === action.payload.id ? { ...task, description: action.payload.description } : task,
-      );
-    }
-    case TasksConstants.ChangeComment: {
-      return state.map((task) => (task.id === action.payload.id ? { ...task, comment: action.payload.comment } : task));
+    case TasksConstants.ChangeTaskMainInfo: {
+      return state.map((task) => (task.id === action.payload.task.id ? { ...action.payload.task } : task));
     }
     default: {
       return state;

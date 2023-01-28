@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Root } from './routes/root/Root';
-import store from './stores/root-store';
-import './index.css';
+import store from './stores/root-store/root-store';
 import { Service } from './routes/service/Service';
 import { Task } from './routes/task/Task';
+import './index.css';
 
 export const router = createBrowserRouter([
   {

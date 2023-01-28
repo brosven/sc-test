@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import services from './servicesStore/services-reducer';
-import tasks from './tasksStore/tasks-reducer';
+import services from '../services-store/services-reducer';
+import tasks from '../tasks-store/tasks-reducer';
 
 const rootReducer = combineReducers({ services, tasks });
 

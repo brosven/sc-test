@@ -9,7 +9,7 @@ const initialValue: ServiceType[] = [
       name: 'Сервис - 1',
       type: 'Публичный',
       description: 'Описание Сервиса - 1',
-      lastUpdate: new Date(2022, 12, 24),
+      lastUpdate: new Date(2022, 12, 24).toLocaleString(),
     },
     owner: {
       name: 'Имя владельца Сервиса - 1',
@@ -22,7 +22,7 @@ const initialValue: ServiceType[] = [
       name: 'Сервис - 2',
       type: 'Со сверх особыми правами',
       description: 'Описание Сервиса - 2',
-      lastUpdate: new Date(2022, 9, 2),
+      lastUpdate: new Date(2022, 9, 2).toLocaleString(),
     },
     owner: {
       name: 'Имя владельца Сервиса - 2',
@@ -35,7 +35,7 @@ const initialValue: ServiceType[] = [
       name: 'Сервис - 3',
       type: 'С особыми правами',
       description: 'Описание Сервиса - 3',
-      lastUpdate: new Date(2022, 1, 1),
+      lastUpdate: new Date(2022, 1, 1).toLocaleString(),
     },
     owner: {
       name: 'Имя владельца Сервиса - 3',
@@ -49,6 +49,18 @@ const servicesReducer = (state: ServiceType[] = initialValue, action: AnyAction)
     case ServicesConstants.ChangeServiceMainInfo: {
       return state.map((service) =>
         service.id === action.payload.id ? { ...service, mainInfo: action.payload.mainInfo } : service,
+      );
+    }
+    case ServicesConstants.ChangeServiceOwner: {
+      return state.map((service) =>
+        service.id === action.payload.id ? { ...service, owner: action.payload.owner } : service,
+      );
+    }
+    case ServicesConstants.ChangeServiceLastUpdate: {
+      return state.map((service) =>
+        service.id === action.payload.id
+          ? { ...service, mainInfo: { ...service.mainInfo, lastUpdate: action.payload.lastUpdate } }
+          : service,
       );
     }
     default: {

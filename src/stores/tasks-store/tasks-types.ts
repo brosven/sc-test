@@ -1,4 +1,4 @@
-import { ServiceType } from '../servicesStore/services-types';
+import { ServiceType } from '../services-store/services-types';
 
 export type TaskType = {
   id: string;
@@ -6,5 +6,5 @@ export type TaskType = {
   customer: ServiceType['mainInfo']['name'];
   description: string;
   comment: string;
-  status: 'new' | 'closed';
+  status: 'новая' | 'завершенная';
 };

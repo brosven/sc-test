@@ -1,8 +1,14 @@
-.descriptionField {
+.commonTaskTextArea {
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   font-weight: 400;
   font-size: 1rem;
+  resize: none;
   width: 400px;
   height: 100px;
-  resize: none;
+  margin-bottom: 15px;
+}
+
+.taskFormWrapper {
+  display: flex;
+  flex-direction: column;
 }

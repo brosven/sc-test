@@ -2,7 +2,7 @@ export type ServiceMainInfoType = {
   name: 'Сервис - 1' | 'Сервис - 2' | 'Сервис - 3';
   type: 'Публичный' | 'С особыми правами' | 'Со сверх особыми правами';
   description: string;
-  lastUpdate: Date;
+  lastUpdate: string;
 };
 
 export type ServiceOwnerType = {

@@ -1,8 +1,9 @@
 import { useParams } from 'react-router-dom';
-import { TaskType } from '../../stores/tasksStore/tasks-types';
-import { useAppSelector } from '../../stores/root-store-hooks';
-import { selectTasks } from '../../stores/root-store-selectors';
+import { TaskType } from '../../stores/tasks-store/tasks-types';
+import { useAppSelector } from '../../stores/root-store/root-store-hooks';
 import { TabsDesk, TabsType } from '../../components/TabsDesk/TabsDesk';
+import { selectTasks } from '../../stores/root-store/root-store-selectors';
+import { TaskMainInfo } from '../../components/Task/TaskMainInfo/TaskMainInfo';
 
 export const Task = () => {
   const { taskId } = useParams();
@@ -12,15 +13,7 @@ export const Task = () => {
   const taskTabs: TabsType[] = [
     {
       header: 'Основная информация',
-      body: (
-        <>
-          <h3>{currentTask?.title}</h3>
-          <p>{currentTask?.customer}</p>
-          <p>{currentTask?.description}</p>
-          <p>{currentTask?.status}</p>
-          <p>{currentTask?.comment}</p>
-        </>
-      ),
+      body: <TaskMainInfo key={currentTask?.id} task={currentTask as TaskType} />,
     },
   ];
 

@@ -1,9 +1,10 @@
 import { useParams } from 'react-router-dom';
-import { ServiceType } from '../../stores/servicesStore/services-types';
-import { useAppSelector } from '../../stores/root-store-hooks';
-import { selectServices } from '../../stores/root-store-selectors';
+import { ServiceType } from '../../stores/services-store/services-types';
+import { useAppSelector } from '../../stores/root-store/root-store-hooks';
 import { TabsDesk, TabsType } from '../../components/TabsDesk/TabsDesk';
-import { ServiceDescription } from '../../components/ServiceDescription/ServiceDescription';
+import { ServiceMainInfo } from '../../components/Service/ServiceMainInfo/ServiceMainInfo';
+import { ServiceOwner } from '../../components/Service/ServiceOwner/ServiceOwner';
+import { selectServices } from '../../stores/root-store/root-store-selectors';
 
 export const Service = () => {
   const { serviceId } = useParams();
@@ -13,16 +14,11 @@ export const Service = () => {
   const serviceTabs: TabsType[] = [
     {
       header: 'Основная информация',
-      body: currentService ? <ServiceDescription service={currentService} /> : <p>Нет информации о сервисе</p>,
+      body: <ServiceMainInfo key={currentService?.id + 'mainInfo'} service={currentService as ServiceType} />,
     },
     {
       header: 'Владелец',
-      body: (
-        <>
-          <p>{currentService?.owner.name}</p>
-          <p>{currentService?.owner.lastName}</p>
-        </>
-      ),
+      body: <ServiceOwner key={currentService?.id + 'owner'} service={currentService as ServiceType} />,
     },
   ];
 
