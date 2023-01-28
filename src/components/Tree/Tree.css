@@ -1,14 +1,7 @@
-.TreeView {
-  height: 100%;
-  min-width: 300px;
-  max-width: fit-content;
-  overflow-x: hidden;
-}
-
-.TreeView a {
+.TreeLink {
   text-decoration: none;
 }
 
-.TreeView a:visited {
+.TreeLink:visited {
   color: black;
 }

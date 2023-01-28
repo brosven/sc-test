@@ -1,15 +1,15 @@
-import { Box, Button, NativeSelect, Stack, TextField } from '@mui/material';
+import { Box, NativeSelect, TextField } from '@mui/material';
 import React, { useState } from 'react';
 import { useAppDispatch } from '../../../stores/root-store/root-store-hooks';
 import { ChangeTaskMainInfo } from '../../../stores/tasks-store/tasks-actions';
 import { TaskType } from '../../../stores/tasks-store/tasks-types';
 import { TaskCustomerType } from './TaskMainInfoTypes';
-import './TaskMainInfo.css';
+import { ConfirmationButtons } from '../../Buttons/ConfirmationButtons/ConfirmationButtons';
 
 export const TaskMainInfo = ({ task }: { task: TaskType }) => {
-  const initialMaionInfoValue = task;
+  const initialMainInfoValue = task;
   const [formChanged, setFormChanged] = useState(false);
-  const [mainInfo, setMainInfo] = useState<TaskType>(initialMaionInfoValue);
+  const [mainInfo, setMainInfo] = useState<TaskType>(initialMainInfoValue);
   const dispatch = useAppDispatch();
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,7 +34,7 @@ export const TaskMainInfo = ({ task }: { task: TaskType }) => {
   };
 
   const handleCancel = () => {
-    setMainInfo(initialMaionInfoValue);
+    setMainInfo(initialMainInfoValue);
     setFormChanged(false);
   };
 
@@ -45,41 +45,24 @@ export const TaskMainInfo = ({ task }: { task: TaskType }) => {
 
   return (
     <>
-      <Box className="taskFormWrapper" component="form" noValidate autoComplete="off">
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }} component="form" noValidate autoComplete="off">
         <TextField
           variant="standard"
           label="Название задачи"
           value={mainInfo.title}
           type="text"
           onChange={handleTitleChange}
-          sx={{ marginBottom: '15px' }}
         />
-        <NativeSelect value={mainInfo.customer} onChange={handleCustomerChange} sx={{ marginBottom: '15px' }}>
+        <NativeSelect value={mainInfo.customer} onChange={handleCustomerChange}>
           <option value="Сервис - 1">Сервис - 1</option>
           <option value="Сервис - 2">Сервис - 2</option>
           <option value="Сервис - 3">Сервис - 3</option>
         </NativeSelect>
-        <TextField
-          variant="standard"
-          label="Статус"
-          value={mainInfo.status}
-          type="text"
-          disabled
-          sx={{ marginBottom: '15px' }}
-        />
-        <textarea className="commonTaskTextArea" value={mainInfo.description} onChange={handleDescriptionChange} />
-        <textarea className="commonTaskTextArea" value={mainInfo.comment} onChange={handleCommentChange} />
+        <TextField variant="standard" label="Статус" value={mainInfo.status} type="text" disabled />
+        <textarea value={mainInfo.description} onChange={handleDescriptionChange} />
+        <textarea value={mainInfo.comment} onChange={handleCommentChange} />
 
-        {formChanged && (
-          <Stack spacing={2} direction="row">
-            <Button variant="contained" onClick={handleSubmit}>
-              Подтвердить
-            </Button>
-            <Button variant="outlined" onClick={handleCancel}>
-              Отменить
-            </Button>
-          </Stack>
-        )}
+        {formChanged && <ConfirmationButtons handleSubmit={handleSubmit} handleCancel={handleCancel} />}
       </Box>
     </>
   );

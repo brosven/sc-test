@@ -1,10 +1,7 @@
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import TreeView from '@mui/lab/TreeView';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import TreeItem from '@mui/lab/TreeItem';
-
+import { TreeView, TreeItem } from '@mui/lab';
+import { ExpandMore, ChevronRight } from '@mui/icons-material';
 import { useAppSelector } from '../../stores/root-store/root-store-hooks';
 import { TaskType } from '../../stores/tasks-store/tasks-types';
 import { ServiceType } from '../../stores/services-store/services-types';
@@ -19,14 +16,14 @@ export const Tree = () => {
     () =>
       services.map((service) => (
         <TreeItem key={service.id} nodeId={service.id} label={service.mainInfo.name}>
-          <Link to={`services/${service.id}`}>
+          <Link to={`services/${service.id}`} className="TreeLink">
             <TreeItem nodeId={service.id + 'info'} label="Информация о сервисе" />
           </Link>
           <TreeItem nodeId={service.id + 'tasks'} label="Задачи">
             {tasks
               .filter((task) => task.customer === service.mainInfo.name)
               .map((task) => (
-                <Link to={`tasks/${task.id}`} key={task.id}>
+                <Link to={`tasks/${task.id}`} key={task.id} className="TreeLink">
                   <TreeItem
                     key={task.id + service.mainInfo.name}
                     nodeId={task.id + service.mainInfo.name}
@@ -43,9 +40,9 @@ export const Tree = () => {
   return (
     <TreeView
       aria-label="categories tree"
-      defaultCollapseIcon={<ExpandMoreIcon />}
-      defaultExpandIcon={<ChevronRightIcon />}
-      className="TreeView"
+      defaultCollapseIcon={<ExpandMore />}
+      defaultExpandIcon={<ChevronRight />}
+      sx={{ height: '100%', minWidth: '300px', maxWidth: 'fit-content', overflowX: 'hidden' }}
     >
       <TreeItem nodeId="services" label="Сервисы">
         {renderServices}

@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
-import { NativeSelect } from '@mui/material';
+import { NativeSelect, Box } from '@mui/material';
 import { ServiceMainInfoType, ServiceType } from '../../../stores/services-store/services-types';
 import { changeServiceDescription } from '../../../stores/services-store/services-actions';
 import { useAppDispatch } from '../../../stores/root-store/root-store-hooks';
 import { ServiceSelectElementType } from './ServiceMainInfoTypes';
-import './ServiceMainInfo.css';
+import { ConfirmationButtons } from '../../Buttons/ConfirmationButtons/ConfirmationButtons';
 
 export const ServiceMainInfo = ({ service }: { service: ServiceType }) => {
   const initialMainInfoValue = service.mainInfo;
@@ -39,7 +36,7 @@ export const ServiceMainInfo = ({ service }: { service: ServiceType }) => {
 
   return (
     <>
-      <Box className="serviceFormWrapper" component="form" noValidate autoComplete="off">
+      <Box component="form" noValidate autoComplete="off" sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
         <h3>{mainInfo.name}</h3>
         <span>Тип: </span>
         <NativeSelect value={mainInfo.type} onChange={handleTypeChange}>
@@ -51,18 +48,9 @@ export const ServiceMainInfo = ({ service }: { service: ServiceType }) => {
           <span>Последнее обновление: </span>
           {mainInfo.lastUpdate}
         </p>
-        <textarea className="commonServiceTextArea" value={mainInfo.description} onChange={handleDescriptionChange} />
+        <textarea value={mainInfo.description} onChange={handleDescriptionChange} />
 
-        {formChanged && (
-          <Stack spacing={2} direction="row">
-            <Button variant="contained" onClick={handleSubmit}>
-              Подтвердить
-            </Button>
-            <Button variant="outlined" onClick={handleCancel}>
-              Отменить
-            </Button>
-          </Stack>
-        )}
+        {formChanged && <ConfirmationButtons handleSubmit={handleSubmit} handleCancel={handleCancel} />}
       </Box>
     </>
   );
