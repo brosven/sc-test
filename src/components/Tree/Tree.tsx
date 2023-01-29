@@ -21,13 +21,13 @@ export const Tree = () => {
           </Link>
           <TreeItem nodeId={service.id + 'tasks'} label="Задачи">
             {tasks
-              .filter((task) => task.customer === service.mainInfo.name)
+              .filter((task) => task.mainInfo.customer === service.mainInfo.name)
               .map((task) => (
                 <Link to={`tasks/${task.id}`} key={task.id} className="TreeLink">
                   <TreeItem
                     key={task.id + service.mainInfo.name}
                     nodeId={task.id + service.mainInfo.name}
-                    label={task.title}
+                    label={task.mainInfo.title}
                   />
                 </Link>
               ))}

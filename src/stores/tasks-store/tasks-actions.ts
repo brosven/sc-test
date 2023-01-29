@@ -1,9 +1,10 @@
 import { TasksConstants } from './tasks-constants';
-import { TaskType } from './tasks-types';
+import { TaskMainInfoType } from './tasks-types';
 
-export const ChangeTaskMainInfo = (task: TaskType) => ({
+export const ChangeTaskMainInfo = (id: string, mainInfo: TaskMainInfoType) => ({
   type: TasksConstants.ChangeTaskMainInfo,
   payload: {
-    task,
+    id,
+    mainInfo,
   },
 });

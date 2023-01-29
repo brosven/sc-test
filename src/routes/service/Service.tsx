@@ -1,7 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { ServiceType } from '../../stores/services-store/services-types';
 import { useAppSelector } from '../../stores/root-store/root-store-hooks';
-import { TabsDesk, TabsType } from '../../components/TabsDesk/TabsDesk';
+import { TabsDesk } from '../../components/TabsDesk/TabsDesk';
+import { TabsType } from '../../components/TabsDesk/TabsDeskTypes';
 import { ServiceMainInfo } from '../../components/Service/ServiceMainInfo/ServiceMainInfo';
 import { ServiceOwner } from '../../components/Service/ServiceOwner/ServiceOwner';
 import { selectServices } from '../../stores/root-store/root-store-selectors';

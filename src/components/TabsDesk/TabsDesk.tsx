@@ -1,19 +1,7 @@
 import React, { useState } from 'react';
-import Box from '@mui/material/Box';
-import Tab from '@mui/material/Tab';
-import TabContext from '@mui/lab/TabContext';
-import TabList from '@mui/lab/TabList';
-import TabPanel from '@mui/lab/TabPanel';
-
-export type TabsType = {
-  header: string;
-  body: JSX.Element;
-};
-
-type TabsDeskProps = {
-  tabs: TabsType[];
-  tabListLabel: string;
-};
+import { Box, Tab } from '@mui/material';
+import { TabContext, TabList, TabPanel } from '@mui/lab';
+import { TabsDeskProps } from './TabsDeskTypes';
 
 export const TabsDesk = ({ tabs, tabListLabel }: TabsDeskProps) => {
   const [value, setValue] = useState('0');

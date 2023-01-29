@@ -1,12 +1,12 @@
 import { Tree } from '../../components/Tree/Tree';
 import { Outlet } from 'react-router-dom';
-import './Root.css';
+import { Box } from '@mui/material';
 
 export const Root = () => {
   return (
-    <div className="wrapper">
+    <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
       <Tree />
       <Outlet />
-    </div>
+    </Box>
   );
 };
