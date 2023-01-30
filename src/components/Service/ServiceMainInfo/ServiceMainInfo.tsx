@@ -48,7 +48,7 @@ export const ServiceMainInfo = ({ service }: { service: ServiceType }) => {
         setMainInfo((prev) => ({ ...prev, ...fileContent }));
         setFormChanged(true);
       } else {
-        alert('Типы полей содержащиеся в файле, не соответсвуют типам полей формы');
+        alert('Типы полей содержащиеся в файле, не соответсвуют изменяемым типам полей формы');
       }
     }
   };
@@ -67,7 +67,7 @@ export const ServiceMainInfo = ({ service }: { service: ServiceType }) => {
       <Box component="form" noValidate autoComplete="off" sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
         <h3>{mainInfo.name}</h3>
         <InputLabel variant="standard" htmlFor="service-main-info-type" sx={{ fontSize: '0.8rem' }}>
-          Тип:
+          Тип
         </InputLabel>
         <NativeSelect
           value={mainInfo.type}
@@ -82,7 +82,7 @@ export const ServiceMainInfo = ({ service }: { service: ServiceType }) => {
         </NativeSelect>
         <TextField label="Последнее обновление" variant="standard" type="text" value={mainInfo.lastUpdate} disabled />
         <InputLabel variant="standard" htmlFor="service-main-info-type" sx={{ fontSize: '0.8rem' }}>
-          Описание:
+          Описание
         </InputLabel>
         <textarea value={mainInfo.description} onChange={handleDescriptionChange} id="service-main-info-description" />
         <JsonButtons downloadUrl={serviceMainInfoJsonDownloadLink} handleJsonDownload={handleFileDownload} />

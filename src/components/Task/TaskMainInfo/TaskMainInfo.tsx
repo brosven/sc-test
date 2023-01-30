@@ -1,4 +1,4 @@
-import { Box, NativeSelect, TextField } from '@mui/material';
+import { Box, InputLabel, NativeSelect, TextField } from '@mui/material';
 import React, { useState } from 'react';
 import { useAppDispatch } from '../../../stores/root-store/root-store-hooks';
 import { ChangeTaskMainInfo } from '../../../stores/tasks-store/tasks-actions';
@@ -57,7 +57,7 @@ export const TaskMainInfo = ({ task }: { task: TaskType }) => {
         setMainInfo((prev) => ({ ...prev, ...fileContent }));
         setFormChanged(true);
       } else {
-        alert('Типы полей содержащиеся в файле, не соответсвуют типам полей формы');
+        alert('Типы полей содержащиеся в файле, не соответсвуют изменяемым типам полей формы');
       }
     }
   };
@@ -81,14 +81,29 @@ export const TaskMainInfo = ({ task }: { task: TaskType }) => {
           type="text"
           onChange={handleTitleChange}
         />
-        <NativeSelect value={mainInfo.customer} onChange={handleCustomerChange}>
+        <InputLabel variant="standard" htmlFor="task-main-info-customer" sx={{ fontSize: '0.8rem' }}>
+          Заказчик
+        </InputLabel>
+        <NativeSelect
+          value={mainInfo.customer}
+          onChange={handleCustomerChange}
+          inputProps={{
+            id: 'task-main-info-customer',
+          }}
+        >
           <option value="Сервис - 1">Сервис - 1</option>
           <option value="Сервис - 2">Сервис - 2</option>
           <option value="Сервис - 3">Сервис - 3</option>
         </NativeSelect>
         <TextField variant="standard" label="Статус" value={mainInfo.status} type="text" disabled />
-        <textarea value={mainInfo.description} onChange={handleDescriptionChange} />
-        <textarea value={mainInfo.comment} onChange={handleCommentChange} />
+        <InputLabel variant="standard" htmlFor="task-main-info-descriptiom" sx={{ fontSize: '0.8rem' }}>
+          Описание
+        </InputLabel>
+        <textarea value={mainInfo.description} onChange={handleDescriptionChange} id="task-main-info-description" />
+        <InputLabel variant="standard" htmlFor="task-main-info-comment" sx={{ fontSize: '0.8rem' }}>
+          Комментарий
+        </InputLabel>
+        <textarea value={mainInfo.comment} onChange={handleCommentChange} id="task-main-info-comment" />
 
         <JsonButtons downloadUrl={taskMainInfoJsonDownloadLink} handleJsonDownload={handleFileDownload} />
         {formChanged && <ConfirmationButtons handleSubmit={handleSubmit} handleCancel={handleCancel} />}

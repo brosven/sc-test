@@ -47,7 +47,7 @@ export const ServiceOwner = ({ service }: { service: ServiceType }) => {
         setOwner((prev) => ({ ...prev, ...fileContent }));
         setFormChanged(true);
       } else {
-        alert('Типы полей содержащиеся в файле, не соответсвуют типам полей формы');
+        alert('Типы полей содержащиеся в файле, не соответсвуют изменяемым типам полей формы');
       }
     }
   };
