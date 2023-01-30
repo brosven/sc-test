@@ -2,5 +2,6 @@
   "title": "Заголовок из Json",
   "customer": "Сервис - 1",
   "description": "Описание задачи из Json",
-  "comment": "Комментарий к задаче из Json"
+  "comment": "Комментарий к задаче из Json",
+  "status": "новая"
 }

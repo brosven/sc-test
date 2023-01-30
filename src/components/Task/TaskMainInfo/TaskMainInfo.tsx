@@ -54,7 +54,13 @@ export const TaskMainInfo = ({ task }: { task: TaskType }) => {
       const fileContent = JSON.parse(e.target?.result);
 
       if (taskMainInfoSchema.safeParse(fileContent).success && !isEmpty(fileContent)) {
-        setMainInfo((prev) => ({ ...prev, ...fileContent }));
+        setMainInfo((prev) => ({
+          ...prev,
+          title: fileContent.title || prev.title,
+          customer: fileContent.customer || prev.customer,
+          description: fileContent.description || prev.description,
+          comment: fileContent.comment || prev.comment,
+        }));
         setFormChanged(true);
       } else {
         alert('Типы полей содержащиеся в файле, не соответсвуют изменяемым типам полей формы');

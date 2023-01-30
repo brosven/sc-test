@@ -45,7 +45,11 @@ export const ServiceMainInfo = ({ service }: { service: ServiceType }) => {
       const fileContent = JSON.parse(e.target?.result);
 
       if (ServiceMainInfoSchema.safeParse(fileContent).success && !isEmpty(fileContent)) {
-        setMainInfo((prev) => ({ ...prev, ...fileContent }));
+        setMainInfo((prev) => ({
+          ...prev,
+          description: fileContent.description || prev.description,
+          type: fileContent.type || prev.type,
+        }));
         setFormChanged(true);
       } else {
         alert('Типы полей содержащиеся в файле, не соответсвуют изменяемым типам полей формы');
