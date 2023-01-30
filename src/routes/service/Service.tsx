@@ -10,7 +10,7 @@ import { selectServices } from '../../stores/root-store/root-store-selectors';
 export const Service = () => {
   const { serviceId } = useParams();
   const services: ServiceType[] = useAppSelector(selectServices);
-  const currentService = services.find((el) => el.id === serviceId);
+  const currentService = services.find((service) => service.id === serviceId);
 
   const serviceTabs: TabsType[] = [
     {

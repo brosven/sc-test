@@ -6,7 +6,7 @@ import { TabsDeskProps } from './TabsDeskTypes';
 export const TabsDesk = ({ tabs, tabListLabel }: TabsDeskProps) => {
   const [value, setValue] = useState('0');
 
-  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+  const handleChange = (e: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
 
@@ -15,14 +15,14 @@ export const TabsDesk = ({ tabs, tabListLabel }: TabsDeskProps) => {
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList onChange={handleChange} aria-label={tabListLabel}>
-            {tabs.map((el, i) => (
-              <Tab label={el.header} value={i.toString()} key={i} />
+            {tabs.map((tab, i) => (
+              <Tab label={tab.header} value={i.toString()} key={i} />
             ))}
           </TabList>
         </Box>
-        {tabs.map((el, i) => (
+        {tabs.map((tab, i) => (
           <TabPanel value={i.toString()} key={i}>
-            {el.body}
+            {tab.body}
           </TabPanel>
         ))}
       </TabContext>

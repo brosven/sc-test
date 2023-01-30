@@ -49,9 +49,9 @@ export const TaskMainInfo = ({ task }: { task: TaskType }) => {
     setFormChanged(false);
   };
 
-  const onTaskMainInfoFileLoad = (event: ProgressEvent<FileReader>) => {
-    if (typeof event.target?.result === 'string') {
-      const fileContent = JSON.parse(event.target?.result);
+  const onTaskMainInfoFileLoad = (e: ProgressEvent<FileReader>) => {
+    if (typeof e.target?.result === 'string') {
+      const fileContent = JSON.parse(e.target?.result);
 
       if (taskMainInfoSchema.safeParse(fileContent).success && !isEmpty(fileContent)) {
         setMainInfo((prev) => ({ ...prev, ...fileContent }));

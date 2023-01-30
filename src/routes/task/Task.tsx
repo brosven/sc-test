@@ -9,7 +9,7 @@ import { TaskMainInfo } from '../../components/Task/TaskMainInfo/TaskMainInfo';
 export const Task = () => {
   const { taskId } = useParams();
   const task: TaskType[] = useAppSelector(selectTasks);
-  const currentTask = task.find((el) => el.id === taskId);
+  const currentTask = task.find((task) => task.id === taskId);
 
   const taskTabs: TabsType[] = [
     {
