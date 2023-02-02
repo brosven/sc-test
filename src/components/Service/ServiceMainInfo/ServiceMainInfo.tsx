@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NativeSelect, Box, TextField, InputLabel } from '@mui/material';
 import { ServiceMainInfoType, ServiceType } from '../../../stores/services-store/services-types';
-import { changeServiceDescription } from '../../../stores/services-store/services-actions';
+import { changeServiceDescription, changeServiceLastUpdate } from '../../../stores/services-store/services-actions';
 import { useAppDispatch } from '../../../stores/root-store/root-store-hooks';
 import { ServiceSelectElementType } from './ServiceMainInfoTypes';
 import { ServiceMainInfoSchema } from './ServiceMainInfoSchema';
@@ -35,8 +35,10 @@ export const ServiceMainInfo = ({ service }: { service: ServiceType }) => {
   };
 
   const handleSubmit = () => {
-    setMainInfo((prev) => ({ ...prev, lastUpdate: new Date().toLocaleString() }));
+    const currentDate = new Date().toLocaleString();
+    setMainInfo((prev) => ({ ...prev, lastUpdate: currentDate }));
     dispatch(changeServiceDescription(service.id, mainInfo));
+    dispatch(changeServiceLastUpdate(service.id, currentDate));
     setFormChanged(false);
   };
 
