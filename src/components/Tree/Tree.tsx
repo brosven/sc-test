@@ -12,31 +12,6 @@ export const Tree = () => {
   const services: ServiceType[] = useAppSelector(selectServices);
   const tasks: TaskType[] = useAppSelector(selectTasks);
 
-  const renderServices = useMemo(
-    () =>
-      services.map((service) => (
-        <TreeItem key={service.id} nodeId={service.id} label={service.mainInfo.name}>
-          <Link to={`services/${service.id}`} className="TreeLink">
-            <TreeItem nodeId={service.id + 'info'} label="Информация о сервисе" />
-          </Link>
-          <TreeItem nodeId={service.id + 'tasks'} label="Задачи">
-            {tasks
-              .filter((task) => task.mainInfo.customer === service.mainInfo.name)
-              .map((task) => (
-                <Link to={`tasks/${task.id}`} key={task.id} className="TreeLink">
-                  <TreeItem
-                    key={task.id + service.mainInfo.name}
-                    nodeId={task.id + service.mainInfo.name}
-                    label={task.mainInfo.title}
-                  />
-                </Link>
-              ))}
-          </TreeItem>
-        </TreeItem>
-      )),
-    [services, tasks],
-  );
-
   return (
     <TreeView
       aria-label="categories tree"
@@ -45,7 +20,26 @@ export const Tree = () => {
       sx={{ height: '100%', minWidth: '300px', maxWidth: 'fit-content', overflowX: 'hidden' }}
     >
       <TreeItem nodeId="services" label="Сервисы">
-        {renderServices}
+        {services.map((service) => (
+          <TreeItem key={service.id} nodeId={service.id} label={service.mainInfo.name}>
+            <Link to={`services/${service.id}`} className="TreeLink">
+              <TreeItem nodeId={service.id + 'info'} label="Информация о сервисе" />
+            </Link>
+            <TreeItem nodeId={service.id + 'tasks'} label="Задачи">
+              {tasks
+                .filter((task) => task.mainInfo.customer === service.mainInfo.name)
+                .map((task) => (
+                  <Link to={`tasks/${task.id}`} key={task.id} className="TreeLink">
+                    <TreeItem
+                      key={task.id + service.mainInfo.name}
+                      nodeId={task.id + service.mainInfo.name}
+                      label={task.mainInfo.title}
+                    />
+                  </Link>
+                ))}
+            </TreeItem>
+          </TreeItem>
+        ))}
       </TreeItem>
     </TreeView>
   );
